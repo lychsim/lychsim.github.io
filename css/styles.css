@@ -118,3 +118,418 @@ html {
 .loading__fade {
   opacity: 0;
 }
+
+/* Global page max width — overrides the template's 1920px cap */
+.mxd-container {
+  max-width: 1600px;
+}
+
+/* About manifest — tighter than the template default */
+.mxd-manifest.ls-manifest {
+  font-size: 2rem;
+  line-height: 1.5;
+}
+@media only screen and (min-width: 768px) {
+  .mxd-manifest.ls-manifest {
+    font-size: 2.4rem;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .mxd-manifest.ls-manifest {
+    font-size: 2.8rem;
+  }
+}
+
+/* The template bumps stats-card illustrations up at min-width: 1600px,
+   sized for a 1920px container. With our 1600px cap the cards no longer
+   grow, so keep the smaller 1200px-tier image sizes at all wider viewports.
+   Also neutralise the negative right/left offsets — those were designed for
+   a much larger decorative bleed; with the reduced widths they clip content. */
+@media only screen and (min-width: 1600px) {
+  .mxd-stats-cards__image.mxd-stats-cards-image-1 {
+    width: 330px;
+    top: 0;
+    left: 0;
+  }
+  .mxd-stats-cards__image.mxd-stats-cards-image-2 {
+    width: 420px;
+    top: auto;
+    bottom: -4rem;
+    padding-top: 4rem;
+  }
+  .mxd-stats-cards__image.mxd-stats-cards-image-3 {
+    width: 450px;
+    right: 0;
+  }
+  .mxd-stats-cards__image.mxd-stats-cards-image-4 {
+    width: 280px;
+    right: 0;
+  }
+}
+
+/* ------------------------------------------------
+ * Python and Agentic Integration section
+ * ------------------------------------------------ */
+
+.pa-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.pa-tabs__btn {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--base-opp-rgb), 0.2);
+  background: transparent;
+  color: var(--t-medium);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease, transform 0.2s ease;
+}
+
+.pa-tabs__btn:hover {
+  border-color: rgba(var(--base-opp-rgb), 0.5);
+  color: var(--t-bright);
+  transform: translateY(-1px);
+}
+
+.pa-tabs__btn--active {
+  background: var(--base-opp);
+  color: var(--t-opp-bright);
+  border-color: var(--base-opp);
+}
+
+.pa-tabs__btn--active:hover {
+  color: var(--t-opp-bright);
+  border-color: var(--base-opp);
+}
+
+.pa-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.pa-panel__row {
+  width: 100%;
+  align-items: stretch;
+}
+
+.pa-panel__left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: space-between;
+  padding-right: 24px;
+}
+
+.pa-panel__title h3 {
+  margin: 0;
+}
+
+.pa-panel__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.pa-panel__descr {
+  margin: 0;
+  color: var(--t-medium);
+  line-height: 1.6;
+}
+
+.pa-panel__cta {
+  margin-top: 8px;
+}
+
+.pa-panel__right {
+  display: flex;
+  align-items: stretch;
+}
+
+.pa-panel__visual {
+  width: 100%;
+  background: var(--base);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
+  overflow: auto;
+  animation: pa-fade-in 0.35s ease both;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@keyframes pa-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* shared code-style block */
+.pa-codeblock,
+.pa-terminal,
+.pa-trace__calls {
+  margin: 0;
+  font-family: "JetBrains Mono", "Fira Code", "Menlo", "Consolas", monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre;
+  color: var(--t-bright);
+}
+
+.pa-codeblock__line,
+.pa-terminal__line,
+.pa-trace__line {
+  display: block;
+}
+
+.pa-tok--kw {
+  color: #c678dd;
+}
+
+.pa-tok--cls {
+  color: #61afef;
+}
+
+.pa-tok--fn {
+  color: #61afef;
+}
+
+.pa-tok--mod {
+  color: #e5c07b;
+}
+
+.pa-tok--str {
+  color: #98c379;
+}
+
+.pa-tok--num {
+  color: #d19a66;
+}
+
+.pa-tok--var {
+  color: var(--t-bright);
+}
+
+.pa-tok--arg {
+  color: #e06c75;
+}
+
+.pa-tok--tx {
+  color: var(--t-medium);
+}
+
+/* MCP trace */
+.pa-trace {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pa-trace__bubble,
+.pa-trace__scene {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(var(--accent-rgb), 0.08);
+  border-left: 3px solid var(--accent);
+}
+
+.pa-trace__scene {
+  background: rgba(var(--additional-rgb), 0.1);
+  border-left-color: var(--additional);
+}
+
+.pa-trace__role {
+  font-family: "JetBrains Mono", "Menlo", monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t-muted);
+}
+
+.pa-trace__msg {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--t-bright);
+}
+
+.pa-trace__arrow {
+  text-align: center;
+  font-size: 18px;
+  color: var(--t-muted);
+  line-height: 1;
+}
+
+.pa-trace__sep {
+  color: var(--t-muted);
+}
+
+/* Terminal block */
+.pa-terminal__prompt {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.pa-terminal__cmd {
+  color: var(--t-bright);
+}
+
+.pa-terminal__comment {
+  color: var(--t-muted);
+}
+
+/* Layout polish at smaller widths */
+@media (max-width: 1199.98px) {
+  .pa-panel__left {
+    padding-right: 0;
+  }
+  .pa-panel__right {
+    margin-top: 24px;
+  }
+  .pa-codeblock,
+  .pa-terminal,
+  .pa-trace__calls {
+    font-size: 12px;
+  }
+}
+
+/* ------------------------------------------------
+ * Case Studies section
+ * ------------------------------------------------ */
+
+/* The Features2 component sets large top/bottom padding on .mxd-features-promo
+   so it can stand alone in its own .mxd-section. Inside our case-studies
+   section we stack two of them, so neutralise that padding and use a smaller
+   inter-block gap. */
+.cs-section .mxd-features-promo {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.cs-block + .cs-block {
+  margin-top: 6rem;
+}
+
+/* Tighter case-study titles — h3 default is 5rem at desktop, h4 is 3rem;
+   land in between for paper-figure captions. */
+.mxd-pinned__title.cs-title {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  margin-bottom: 1.6rem;
+}
+@media only screen and (min-width: 768px) {
+  .mxd-pinned__title.cs-title {
+    font-size: 3.4rem;
+  }
+}
+
+/* ------------------------------------------------
+ * Public Release section
+ * ------------------------------------------------ */
+
+.pr-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.pr-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.8rem 2rem;
+  border-radius: 16px;
+  background: var(--base-tint);
+  color: var(--t-bright);
+  text-decoration: none;
+  position: relative;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.pr-link:hover {
+  background: var(--base-opp);
+  color: var(--t-opp-bright);
+  transform: translateY(-2px);
+}
+
+.pr-link:hover .pr-link__subtitle {
+  color: var(--t-opp-muted);
+}
+
+.pr-link__subtitle {
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t-muted);
+}
+
+.pr-link__label {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.pr-link__arrow {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.6rem;
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+.pr-teaser {
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pr-teaser img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 991.98px) {
+  .pr-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs-image {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.cs-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 1199.98px) {
+  .cs-block + .cs-block {
+    margin-top: 3rem;
+  }
+  .cs-image {
+    margin-top: 24px;
+  }
+}
